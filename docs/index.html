@@ -15,19 +15,46 @@
     }
     header {
       background: #20232a;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+    header h1 {
+      color: #ffffff;
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    nav a {
       color: #61dafb;
-      padding: 20px;
-      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:focus, nav a:hover {
+      text-decoration: underline;
     }
     main {
-      padding: 20px;
+      padding: 100px 20px 20px; /* espaço extra por causa do menu fixo */
       max-width: 900px;
       margin: auto;
     }
     section {
-      margin-bottom: 40px;
+      margin-bottom: 60px;
     }
-    h1, h2 {
+    h2 {
       color: #20232a;
     }
     .placeholder {
@@ -50,11 +77,18 @@
 <body>
   <header>
     <h1>Popularidade de Personagens Marvel vs DC no Brasil</h1>
-    <p>Análise baseada em dados do Google Trends e Keyword Planner</p>
+    <nav aria-label="Navegação principal">
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#marvel-vs-dc">Marvel vs DC</a></li>
+        <li><a href="#herois">Heróis</a></li>
+        <li><a href="#viloes">Vilões</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>
-    <section>
+    <section id="sobre">
       <h2>Sobre o Projeto</h2>
       <p>
         Este projeto investiga a popularidade de personagens da Marvel e da DC Comics no Brasil,
@@ -67,19 +101,25 @@
       </ul>
     </section>
 
-    <section>
+    <section id="marvel-vs-dc">
       <h2>Marvel vs DC</h2>
-      <div class="placeholder">[Gráfico comparando Marvel e DC por estado]</div>
+      <div class="placeholder" role="img" aria-label="Gráfico comparando Marvel e DC por estado">
+        [Gráfico comparando Marvel e DC por estado]
+      </div>
     </section>
 
-    <section>
+    <section id="herois">
       <h2>Heróis Mais Populares</h2>
-      <div class="placeholder">[Ranking de heróis - gráfico de barras]</div>
+      <div class="placeholder" role="img" aria-label="Ranking de heróis em gráfico de barras">
+        [Ranking de heróis - gráfico de barras]
+      </div>
     </section>
 
-    <section>
+    <section id="viloes">
       <h2>Vilões Mais Populares</h2>
-      <div class="placeholder">[Ranking de vilões - gráfico de barras]</div>
+      <div class="placeholder" role="img" aria-label="Ranking de vilões em gráfico de barras">
+        [Ranking de vilões - gráfico de barras]
+      </div>
     </section>
   </main>
 
