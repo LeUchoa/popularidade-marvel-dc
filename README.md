@@ -85,5 +85,20 @@ Além de responder a essa questão, um dos objetivos pessoais é também compart
 
 ---
 
+## ♿ Acessibilidade
+
+Este projeto também se preocupa com inclusão digital.  
+A página foi construída seguindo boas práticas de acessibilidade baseadas nas diretrizes **WCAG 2.1 (nível AA)** e recomendações **WAI-ARIA**, incluindo:
+
+- Estrutura semântica em HTML5 (`header`, `main`, `section`, `footer`).  
+- Navegação clara com `nav` e `aria-label`.  
+- Contraste de cores adequado para leitura em diferentes dispositivos.  
+- Placeholders de gráficos com descrições (`role="img"` + `aria-label`).  
+- Suporte à navegação por teclado (foco visível em links e menus).  
+
+Nos próximos passos, à medida que os gráficos forem adicionados, também serão incluídas descrições alternativas para garantir que os resultados sejam compreensíveis por todos.
+
+---
+
 ✍️ **Autor**: Leandro ([@LeUchoa](https://github.com/LeUchoa))  
 📅 **Ano**: 2025
