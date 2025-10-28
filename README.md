@@ -60,6 +60,7 @@ Além de responder a essa questão, um dos objetivos pessoais é também compart
 ├── 📁 visuals/               # Mapas, gráficos e ícones usados no relatório
 ├── 📁 docs/                  # Documentação extra (metodologia detalhada, apêndices)
 └── README.md                 # Guia principal do projeto
+```
 
 ---
 
