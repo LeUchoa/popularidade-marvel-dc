@@ -11,6 +11,14 @@ O resultado final será uma **página web** com os dados e a reportagem, hospeda
 
 ---
 
+## 🔹 Motivação
+
+Sou fã de quadrinhos desde sempre, com uma queda maior pela Marvel, mas sempre gostei da rivalidade com a DC.  
+A ideia deste projeto surgiu após assistir a um vídeo do canal **Ei Nerd**, onde o Peter comentava a pesquisa da USDish sobre popularidade de heróis nos EUA e levantava a dúvida de como seria no Brasil.  
+Além de responder a essa questão, um dos objetivos pessoais é também compartilhar os resultados com a comunidade nerd brasileira — quem sabe até chegar ao Peter do Ei Nerd 🎯.
+
+---
+
 ## 🔹 Metodologia
 
 - **Fontes de dados**:  
@@ -19,7 +27,7 @@ O resultado final será uma **página web** com os dados e a reportagem, hospeda
 
 - **Configurações no Trends**:  
   - Localidade: Brasil  
-  - Período: últimos 12 meses  
+  - Período: **01/01/2024 a 31/12/2024**  
   - Categoria: todas  
   - Tipo de busca: pesquisa na web  
   - Critério: **termo de pesquisa** (para garantir comparabilidade)  
@@ -30,7 +38,7 @@ O resultado final será uma **página web** com os dados e a reportagem, hospeda
 
 ## 🔹 Escopo da Análise
 
-1. Ranking de super-heróis (Brasil, últimos 12 meses).  
+1. Ranking de super-heróis (Brasil, ano de 2024).  
 2. Ranking de vilões (mesma metodologia).  
 3. Comparação direta Marvel vs DC.  
 4. Visualizações:  
@@ -65,6 +73,14 @@ O resultado final será uma **página web** com os dados e a reportagem, hospeda
 - [ ] Criar mapas e gráficos.  
 - [ ] Montar página web com resultados.  
 - [ ] Divulgar o projeto (meta: chegar até o canal **Ei Nerd** 🎯).  
+
+---
+
+## 📚 Inspirações
+
+- [Marvel vs. DC: Quem prevalece no seu estado? (USDish)](https://www.usdish.com/news/blog/marvel-vs-dc-your-states-favorite-comics)  
+- [Marvel vs DC: qual companhia é mais popular? (Canaltech)](https://canaltech.com.br/entretenimento/marvel-vs-dc-qual-companhia-e-mais-popular-pesquisa-responde-a-essa-pergunta-183758/)  
+- [OFICIAL - DC É MELHOR QUE MARVEL (Ei Nerd, YouTube)](https://youtu.be/bSuNck0P6T0?si=03TyLVHHKO3DoBYX)  
 
 ---
 
