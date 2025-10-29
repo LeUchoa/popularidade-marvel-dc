@@ -9,7 +9,7 @@
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
-  
+
   <!-- Open Graph -->
   <meta property="og:url" content="https://leuchoa.github.io/popularidade-marvel-dc/">
   <meta property="og:type" content="website">
@@ -189,8 +189,28 @@
 
     <section id="marvel-vs-dc">
       <h2>Marvel vs DC</h2>
-      <div class="placeholder" role="img" aria-label="Gráfico comparando Marvel e DC por estado">
-        [Gráfico comparando Marvel e DC por estado]
+      <p>Comparação do interesse de busca no Google Trends ao longo de 2024 no Brasil.</p>
+
+      <!-- Gráfico oficial do Google Trends -->
+      <div class="trends-embed">
+        <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/4215_RC01/embed_loader.js"></script>
+        <script type="text/javascript">
+          trends.embed.renderExploreWidget(
+            "TIMESERIES",
+            {
+              "comparisonItem":[
+                {"keyword":"/m/02hvd","geo":"BR","time":"2024-01-01 2024-12-31"},
+                {"keyword":"/m/058j2","geo":"BR","time":"2024-01-01 2024-12-31"}
+              ],
+              "category":0,
+              "property":""
+            },
+            {
+              "exploreQuery":"date=2024-01-01%202024-12-31&geo=BR&q=%2Fm%2F02hvd,%2Fm%2F058j2&hl=pt",
+              "guestPath":"https://trends.google.com:443/trends/embed/"
+            }
+          );
+        </script>
       </div>
     </section>
 
@@ -218,16 +238,4 @@
     const menu = document.querySelector('nav ul');
 
     function toggleMenu() {
-      const isActive = menu.classList.toggle('active');
-      toggle.setAttribute('aria-expanded', isActive);
-    }
-
-    toggle.addEventListener('click', toggleMenu);
-    toggle.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        toggleMenu();
-      }
-    });
-  </script>
-</body>
-</html>
+      const isActive = menu.class
