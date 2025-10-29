@@ -1,241 +1,207 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Popularidade Marvel vs DC no Brasil</title>
-  <meta name="description" content="Análise da popularidade de heróis e vilões da Marvel e DC no Brasil em 2024, baseada em dados do Google Trends e Keyword Planner.">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
-
-  <!-- Open Graph -->
-  <meta property="og:url" content="https://leuchoa.github.io/popularidade-marvel-dc/">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Popularidade Marvel vs DC no Brasil">
-  <meta property="og:description" content="Análise da popularidade de heróis e vilões da Marvel e DC no Brasil em 2024, baseada em dados do Google Trends e Keyword Planner.">
-  <meta property="og:image" content="https://leuchoa.github.io/popularidade-marvel-dc/thumbnail.jpg">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://leuchoa.github.io/popularidade-marvel-dc/">
-  <meta name="twitter:title" content="Popularidade Marvel vs DC no Brasil">
-  <meta name="twitter:description" content="Análise da popularidade de heróis e vilões da Marvel e DC no Brasil em 2024, baseada em dados do Google Trends e Keyword Planner.">
-  <meta name="twitter:image" content="https://leuchoa.github.io/popularidade-marvel-dc/thumbnail.jpg">
-
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marvel vs DC — Distribuição por Estados (Mapa 2024)</title>
+  <!-- Versões compatíveis -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-geo@4.3.1"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background: #f9f9f9;
       margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      background-color: #f9f9f9;
-      color: #333;
+      padding: 20px;
     }
-
-    /* ===== HEADER ===== */
-    header {
-      background: #20232a;
-      padding: 10px 20px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header h1 {
-      color: #ffffff;
-      margin: 0;
-      font-size: 1.2rem;
-    }
-
-    /* ===== NAV ===== */
-    nav {
-      position: relative;
-    }
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      gap: 20px;
-    }
-    nav a {
-      color: #61dafb;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:focus, nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* ===== HAMBURGUER ===== */
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      cursor: pointer;
-      width: 30px;
-      height: 25px;
-    }
-    .menu-toggle span {
-      height: 3px;
-      background: #61dafb;
-      margin: 4px 0;
-      border-radius: 2px;
-      transition: 0.3s;
-    }
-
-    /* ===== MAIN ===== */
-    main {
-      padding: 100px 20px 20px;
-      max-width: 900px;
+    h2 { text-align: center; margin-bottom: 20px; }
+    .chart-box {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 1000px;
       margin: auto;
     }
-    section {
-      margin-bottom: 60px;
-    }
-    h2 {
-      color: #20232a;
-      font-size: 1.3rem;
-    }
-    .placeholder {
-      background: #e0e0e0;
-      border: 2px dashed #aaa;
-      padding: 20px;
-      text-align: center;
-      color: #555;
-      margin-top: 15px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: #20232a;
-      color: #fff;
-      text-align: center;
+    #custom-tooltip {
+      position: absolute;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
       padding: 10px;
-      font-size: 0.9em;
-    }
-
-    /* ===== RESPONSIVIDADE ===== */
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 1rem;
-      }
-      nav ul {
-        flex-direction: column;
-        background: #20232a;
-        position: absolute;
-        top: 40px;
-        right: 0;
-        width: 200px;
-        display: none;
-        padding: 10px 0;
-      }
-      nav ul li {
-        text-align: center;
-        padding: 10px 0;
-      }
-      nav ul li a {
-        display: block;
-        width: 100%;
-      }
-      nav ul.active {
-        display: block;
-      }
-      .menu-toggle {
-        display: flex;
-      }
+      pointer-events: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      opacity: 0;
+      transition: opacity 0.15s;
+      z-index: 1000;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Popularidade de Personagens Marvel vs DC no Brasil</h1>
-    <nav aria-label="Navegação principal">
-      <div class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" role="button" tabindex="0">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <ul>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#marvel-vs-dc">Marvel vs DC</a></li>
-        <li><a href="#herois">Heróis</a></li>
-        <li><a href="#viloes">Vilões</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main>
-    <section id="sobre">
-      <h2>Sobre o Projeto</h2>
-      <p>
-        Este projeto investiga a popularidade de personagens da Marvel e da DC Comics no Brasil,
-        com base em dados de 2024. O objetivo é responder três perguntas principais:
-      </p>
-      <ul>
-        <li>Qual é o herói mais popular no Brasil?</li>
-        <li>Qual é o vilão mais popular no Brasil?</li>
-        <li>Entre Marvel e DC, qual editora é mais popular no país?</li>
-      </ul>
-    </section>
-
-    <section id="marvel-vs-dc">
-      <h2>Marvel vs DC</h2>
-      <p>Comparação do interesse de busca no Google Trends ao longo de 2024 no Brasil.</p>
-
-      <!-- Gráfico oficial do Google Trends -->
-      <div class="trends-embed">
-        <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/4215_RC01/embed_loader.js"></script>
-        <script type="text/javascript">
-          trends.embed.renderExploreWidget(
-            "TIMESERIES",
-            {
-              "comparisonItem":[
-                {"keyword":"/m/02hvd","geo":"BR","time":"2024-01-01 2024-12-31"},
-                {"keyword":"/m/058j2","geo":"BR","time":"2024-01-01 2024-12-31"}
-              ],
-              "category":0,
-              "property":""
-            },
-            {
-              "exploreQuery":"date=2024-01-01%202024-12-31&geo=BR&q=%2Fm%2F02hvd,%2Fm%2F058j2&hl=pt",
-              "guestPath":"https://trends.google.com:443/trends/embed/"
-            }
-          );
-        </script>
-      </div>
-    </section>
-
-    <section id="herois">
-      <h2>Heróis Mais Populares</h2>
-      <div class="placeholder" role="img" aria-label="Ranking de heróis em gráfico de barras">
-        [Ranking de heróis - gráfico de barras]
-      </div>
-    </section>
-
-    <section id="viloes">
-      <h2>Vilões Mais Populares</h2>
-      <div class="placeholder" role="img" aria-label="Ranking de vilões em gráfico de barras">
-        [Ranking de vilões - gráfico de barras]
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>Projeto criado por Leandro (@LeUchoa) – 2025</p>
-  </footer>
+  <h2>Marvel vs DC — Distribuição por Estados (Mapa 2024)</h2>
+  <div class="chart-box">
+    <canvas id="mapChart"></canvas>
+  </div>
+  <div id="custom-tooltip"></div>
 
   <script>
-    const toggle = document.querySelector('.menu-toggle');
-    const menu = document.querySelector('nav ul');
+    // Registro explícito dos componentes do plugin
+    const { ChoroplethController, Choropleth, GeoFeature } = ChartGeo;
+    Chart.register(ChoroplethController, Choropleth, GeoFeature);
 
-    function toggleMenu() {
-      const isActive = menu.class
+    // Dataset Marvel/DC (nomes com acento)
+    const dataEstados = {
+      "Acre": [30,70], "Alagoas": [33,67], "Amapá": [28,72], "Amazonas": [29,71],
+      "Bahia": [26,74], "Ceará": [30,70], "Distrito Federal": [26,74], "Espírito Santo": [29,71],
+      "Goiás": [28,72], "Maranhão": [27,73], "Mato Grosso": [31,69], "Mato Grosso do Sul": [30,70],
+      "Minas Gerais": [24,76], "Pará": [26,74], "Paraíba": [31,69], "Paraná": [27,73],
+      "Pernambuco": [26,74], "Piauí": [33,67], "Rio de Janeiro": [27,73], "Rio Grande do Norte": [31,69],
+      "Rio Grande do Sul": [28,72], "Rondônia": [30,70], "Roraima": [26,74], "Santa Catarina": [26,74],
+      "São Paulo": [25,75], "Sergipe": [33,67], "Tocantins": [29,71]
+    };
+
+    // Normalização de nomes: remove acentos e baixa tudo
+    function normalize(str) {
+      return str
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    // Índice de lookup normalizado para o dataset
+    const dataLookup = {};
+    Object.keys(dataEstados).forEach(nome => {
+      dataLookup[normalize(nome)] = { nome, dc: dataEstados[nome][0], marvel: dataEstados[nome][1] };
+    });
+
+    // Escala de cor: vermelho se Marvel > DC, azul se DC > Marvel
+    function getColor(dc, marvel) {
+      if (marvel > dc) {
+        const intensidade = (marvel - dc) / 100;
+        return `rgba(230,57,70,${0.3 + intensidade*0.7})`;
+      } else {
+        const intensidade = (dc - marvel) / 100;
+        return `rgba(0,123,255,${0.3 + intensidade*0.7})`;
+      }
+    }
+
+    // Carrega GeoJSON (estados brasileiros)
+    fetch("https://raw.githubusercontent.com/fititnt/gis-dataset-brasil/master/geojson/estados.json")
+      .then(res => res.json())
+      .then(geo => {
+        // Monta dataset com match de nomes via normalização
+        const features = geo.features.map(f => {
+          const nomeGeo = f.properties.NOME;            // nomes sem acento no arquivo
+          const key = normalize(nomeGeo);               // normaliza
+          const found = dataLookup[key];                // procura no dataset normalizado
+          const nomeFinal = found ? found.nome : nomeGeo;
+          const dc = found ? found.dc : 0;
+          const marvel = found ? found.marvel : 0;
+          return {
+            feature: f,
+            value: marvel - dc,
+            dc, marvel, nome: nomeFinal
+          };
+        });
+
+        const ctx = document.getElementById("mapChart").getContext("2d");
+        new Chart(ctx, {
+          type: "choropleth",
+          data: {
+            labels: features.map(f => f.nome),
+            datasets: [{
+              label: "Distribuição por Estados",
+              outline: { type: 'FeatureCollection', features: geo.features },
+              data: features.map(f => ({
+                feature: f.feature,
+                value: f.value,
+                dc: f.dc,
+                marvel: f.marvel,
+                nome: f.nome
+              })),
+              backgroundColor: c => {
+                const d = c.raw;
+                return getColor(d.dc, d.marvel);
+              },
+              borderColor: 'rgba(0,0,0,0.15)',
+              borderWidth: 0.5
+            }]
+          },
+          options: {
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                enabled: false, // tooltip externo
+                external: function(context) {
+                  const tooltipEl = document.getElementById('custom-tooltip');
+                  const tooltipModel = context.tooltip;
+                  if (tooltipModel.opacity === 0) {
+                    tooltipEl.style.opacity = 0;
+                    return;
+                  }
+                  const d = tooltipModel.dataPoints[0].raw;
+                  const state = d.nome;
+                  const dc = d.dc;
+                  const marvel = d.marvel;
+
+                  tooltipEl.innerHTML = `
+                    <div style="font-weight:600;margin-bottom:6px;">${state}</div>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                      <div>
+                        <div style="display:flex;justify-content:space-between;gap:12px;">
+                          <span style="color:#007bff;">DC Comics</span>
+                          <span style="color:#007bff;">${dc}%</span>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;gap:12px;">
+                          <span style="color:#e63946;">Marvel Comics</span>
+                          <span style="color:#e63946;">${marvel}%</span>
+                        </div>
+                      </div>
+                      <canvas id="miniChart" width="64" height="64"></canvas>
+                    </div>
+                    <div style="margin-top:8px;font-size:12px;color:#555;">
+                      Porcentagens calculadas das pesquisas para todos os 2 termos em ${state}
+                    </div>
+                  `;
+
+                  // Posiciona perto do cursor
+                  const rect = context.chart.canvas.getBoundingClientRect();
+                  tooltipEl.style.left = rect.left + context.chart._lastEvent.x + 15 + "px";
+                  tooltipEl.style.top = rect.top + context.chart._lastEvent.y + 15 + "px";
+                  tooltipEl.style.opacity = 1;
+
+                  const miniCtx = document.getElementById("miniChart").getContext("2d");
+                  if (miniCtx._chartInstance) miniCtx._chartInstance.destroy();
+                  miniCtx._chartInstance = new Chart(miniCtx, {
+                    type: "doughnut",
+                    data: {
+                      labels: ["DC","Marvel"],
+                      datasets: [{
+                        data: [dc, marvel],
+                        backgroundColor: ["#007bff","#e63946"]
+                      }]
+                    },
+                    options: {
+                      plugins:{legend:{display:false}},
+                      cutout:"60%",
+                      responsive:false
+                    }
+                  });
+                }
+              }
+            },
+            scales: {
+              projection: {
+                // Projeção adequada para mapas no plugin
+                axis: 'xy',
+                projection: 'equalEarth'
+              }
+            }
+          }
+        });
+      });
+  </script>
+</body>
+</html>
