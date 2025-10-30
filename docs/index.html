@@ -2,206 +2,178 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Marvel vs DC — Distribuição por Estados (Mapa 2024)</title>
-  <!-- Versões compatíveis -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-geo@4.3.1"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Marvel x DC no Brasil: quem domina o interesse em 2024?</title>
+  <meta name="description" content="Levantamento de interesse em 2024 mostra a Marvel na frente da DC no Brasil, com médias e variações mensais sem inversões. Valores em índice (estilo Trends)."/>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      margin: 0;
-      padding: 20px;
+    :root{
+      --bg:#f9f9f9; --card:#fff; --text:#111; --muted:#555;
+      --border:#ddd; --focus:#ffb84d; --max:860px;
     }
-    h2 { text-align: center; margin-bottom: 20px; }
-    .chart-box {
-      background: #fff;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      max-width: 1000px;
-      margin: auto;
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;}
+    .wrap{max-width:var(--max);margin:0 auto;padding:20px;}
+    header{background:var(--card);border-radius:10px;padding:16px;box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+    h1{margin:0 0 10px;font-size:1.8rem;}
+    .dek{margin:0 0 12px;font-size:1rem;}
+    .meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;font-size:0.9rem;color:var(--muted);border-top:1px dashed var(--border);padding-top:8px;}
+    .banner{margin:20px 0;background:#eee;border:1px dashed #ccc;border-radius:10px;min-height:220px;display:flex;align-items:center;justify-content:center;color:#666;}
+    main article{background:var(--card);border-radius:10px;padding:16px;box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+    article h2{margin-top:20px;font-size:1.2rem;}
+    .chart-slot{margin:18px 0;border:1px dashed var(--border);border-radius:8px;background:#fafafa;padding:12px;color:#666;}
+    .charts-row{display:flex;gap:12px;flex-wrap:wrap;}
+    .chart-half{flex:1 1 260px;min-height:200px;background:#f4f4f4;display:flex;align-items:center;justify-content:center;border-radius:8px;text-align:center;}
+    .caption{font-size:0.85rem;color:#555;margin-top:6px;text-align:center;}
+    .methodology{margin-top:24px;background:#fcfcfd;border:1px solid var(--border);border-radius:8px;padding:14px;font-size:0.95rem;}
+    table{width:100%;border-collapse:collapse;margin-top:10px;font-size:0.9rem;}
+    th,td{border:1px solid var(--border);padding:6px;text-align:left;}
+    th{background:#f2f2f2;}
+    footer{margin-top:30px;font-size:0.9rem;color:#555;text-align:center;}
+    /* Share icons */
+    .share{display:flex;gap:10px;align-items:center;}
+    .share a{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;}
+    .share img,.share svg{width:100%;height:100%;}
+    a:focus, button:focus{outline:3px solid var(--focus);outline-offset:2px}
+    @media(max-width:600px){
+      h1{font-size:1.4rem}
+      .banner{min-height:160px}
+      .charts-row{flex-direction:column}
+      .share a{width:26px;height:26px}
     }
-    #custom-tooltip {
-      position: absolute;
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      padding: 10px;
-      pointer-events: none;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      opacity: 0;
-      transition: opacity 0.15s;
-      z-index: 1000;
-    }
+    @media(prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
   </style>
 </head>
 <body>
-  <h2>Marvel vs DC — Distribuição por Estados (Mapa 2024)</h2>
-  <div class="chart-box">
-    <canvas id="mapChart"></canvas>
+  <div class="wrap">
+
+    <!-- Banner primeiro -->
+    <div class="banner" role="img" aria-label="Imagem de destaque da matéria (placeholder)">
+      Banner de destaque — inserir imagem aqui
+    </div>
+
+    <header role="banner" aria-labelledby="title">
+      <h1 id="title">Marvel x DC no Brasil: quem domina o interesse em 2024?</h1>
+      <p class="dek">
+        Nos dados que analisamos, a Marvel mantém folga sobre a DC ao longo de 2024: média de 46.1 para a Marvel contra 19.4 para a DC.
+        São valores de índice (como o do Trends), não porcentagem — e não há viradas de liderança.
+      </p>
+      <div class="meta">
+        <div>Por <strong>Leandro "CrashNeo" Uchôa</strong> • <time datetime="2025-11">novembro de 2025</time></div>
+        <nav class="share" aria-label="Compartilhar este artigo">
+          <a href="https://twitter.com/intent/tweet?url=https://leuchoa.github.io/popularidade-marvel-dc/&text=Marvel%20x%20DC%20no%20Brasil%3A%20quem%20domina%20o%20interesse%20em%202024%3F" aria-label="Compartilhar no X">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X"/>
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://leuchoa.github.io/popularidade-marvel-dc/" aria-label="Compartilhar no Facebook">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"/>
+          </a>
+          <a href="https://wa.me/?text=Marvel%20x%20DC%20no%20Brasil%3A%20quem%20domina%20o%20interesse%20em%202024%3F%20https%3A%2F%2Fleuchoa.github.io%2Fpopularidade-marvel-dc%2F" aria-label="Compartilhar no WhatsApp">
+            <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp"/>
+          </a>
+          <!-- Ícone de corrente inline garantido -->
+          <a href="https://leuchoa.github.io/popularidade-marvel-dc/" aria-label="Abrir link">
+            <svg viewBox="0 0 24 24" role="img" aria-label="Link" xmlns="http://www.w3.org/2000/svg">
+              <path fill="#4a4a4a" d="M3.9 12a4.1 4.1 0 0 1 1.2-2.9l3.2-3.2a4.1 4.1 0 0 1 5.8 0 1 1 0 1 1-1.4 1.4 2.1 2.1 0 0 0-3 0L6.6 10.6a2.1 2.1 0 0 0 0 3 1 1 0 1 1-1.4 1.4A4.1 4.1 0 0 1 3.9 12Zm16.2 0a4.1 4.1 0 0 1-1.2 2.9l-3.2 3.2a4.1 4.1 0 0 1-5.8 0 1 1 0 1 1 1.4-1.4 2.1 2.1 0 0 0 3 0l3.2-3.2a2.1 2.1 0 0 0 0-3 1 1 0 1 1 1.4-1.4 4.1 4.1 0 0 1 1.2 2.9Zm-9.6 2.4 4.8-4.8a1 1 0 0 1 1.4 1.4l-4.8 4.8a1 1 0 1 1-1.4-1.4Z"/>
+            </svg>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <article role="article" aria-labelledby="intro">
+        <h2 id="intro">Panorama geral</h2>
+        <p>
+          A eterna disputa entre Marvel e DC também se reflete no interesse dos brasileiros em 2024. E os números são claros: a Marvel mantém
+          vantagem ampla e consistente ao longo do ano, com média de <strong>46.1</strong> contra <strong>19.4</strong> da DC (índice de atenção, não porcentagem).
+        </p>
+
+        <!-- Gráfico 1: 2x1 -->
+        <section class="chart-slot" role="group" aria-labelledby="slot-2x1">
+          <h3 id="slot-2x1">Gráfico consolidado + evolução mensal</h3>
+          <div class="charts-row">
+            <div class="chart-half" aria-label="Gráfico de barras com médias 2024">[Média consolidada]</div>
+            <div class="chart-half" aria-label="Gráfico de linha com evolução mensal 2024">[Linha mês a mês]</div>
+          </div>
+          <div class="caption">À esquerda, a média consolidada de 2024; à direita, a evolução mês a mês.</div>
+        </section>
+
+        <h2>O mapa do fandom</h2>
+        <p>
+          Quando olhamos estado por estado, o cenário é consistente: a Marvel aparece na frente em todos os estados analisados. A DC mantém uma
+          base fiel, mas não há casos em que ela ultrapasse a rival.
+        </p>
+
+        <!-- Gráfico 2: por estado + tabela -->
+        <section class="chart-slot" role="group" aria-labelledby="slot-estados">
+          <h3 id="slot-estados">Distribuição por estados</h3>
+          <div style="width:100%;min-height:260px;background:#f4f4f4;display:flex;align-items:center;justify-content:center;border-radius:8px;text-align:center;" aria-label="Gráfico por estados">
+            [Gráfico por estados]
+          </div>
+          <div class="caption">Marvel lidera em todos os estados; tabela abaixo detalha os índices.</div>
+          <table aria-describedby="tabela-estados-desc">
+            <caption id="tabela-estados-desc">Índices por estado (formato comparativo, estilo Trends)</caption>
+            <thead><tr><th>Estado</th><th>DC</th><th>Marvel</th></tr></thead>
+            <tbody>
+              <tr><td>Acre</td><td>30</td><td>70</td></tr>
+              <tr><td>Alagoas</td><td>33</td><td>67</td></tr>
+              <tr><td>Amapá</td><td>28</td><td>72</td></tr>
+              <tr><td>Amazonas</td><td>29</td><td>71</td></tr>
+              <tr><td>Bahia</td><td>26</td><td>74</td></tr>
+              <tr><td>Ceará</td><td>30</td><td>70</td></tr>
+              <tr><td>Distrito Federal</td><td>26</td><td>74</td></tr>
+              <tr><td>Espírito Santo</td><td>29</td><td>71</td></tr>
+              <tr><td>Goiás</td><td>28</td><td>72</td></tr>
+              <tr><td>Maranhão</td><td>27</td><td>73</td></tr>
+              <tr><td>Mato Grosso</td><td>31</td><td>69</td></tr>
+              <tr><td>Mato Grosso do Sul</td><td>30</td><td>70</td></tr>
+              <tr><td>Minas Gerais</td><td>24</td><td>76</td></tr>
+              <tr><td>Pará</td><td>26</td><td>74</td></tr>
+              <tr><td>Paraíba</td><td>31</td><td>69</td></tr>
+              <tr><td>Paraná</td><td>27</td><td>73</td></tr>
+              <tr><td>Pernambuco</td><td>26</td><td>74</td></tr>
+              <tr><td>Piauí</td><td>33</td><td>67</td></tr>
+              <tr><td>Rio de Janeiro</td><td>27</td><td>73</td></tr>
+              <tr><td>Rio Grande do Norte</td><td>31</td><td>69</td></tr>
+              <tr><td>Rio Grande do Sul</td><td>28</td><td>72</td></tr>
+              <tr><td>Rondônia</td><td>30</td><td>70</td></tr>
+              <tr><td>Roraima</td><td>26</td><td>74</td></tr>
+              <tr><td>Santa Catarina</td><td>26</td><td>74</td></tr>
+              <tr><td>São Paulo</td><td>25</td><td>75</td></tr>
+              <tr><td>Sergipe</td><td>33</td><td>67</td></tr>
+              <tr><td>Tocantins</td><td>29</td><td>71</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <h2>O Brasil em cores</h2>
+        <p>
+          Pense o país como uma página de HQ gigante: um Brasil inteiro em tons de vermelho — do mais claro ao mais vibrante.
+          Cada estado é um quadro dessa história, variando só na intensidade. No placar, a paleta é Marvel de ponta a ponta.
+        </p>
+
+        <!-- Gráfico 3: mapa -->
+        <section class="chart-slot" role="img" aria-label="Mapa do Brasil — predominância de interesse">
+          [Placeholder do mapa do Brasil]
+          <div class="caption">Mapa em tons de vermelho: Marvel domina em todos os estados.</div>
+        </section>
+
+        <section class="methodology" aria-labelledby="metodo">
+          <h3 id="metodo">Metodologia</h3>
+          <p>
+            Os valores são índices de interesse ao longo de 2024 (formato semelhante ao Google Trends), agregados por mês e por estado.
+            As médias (Marvel 46.1; DC 19.4) representam o comportamento geral do período. Não foram aplicadas correlações externas
+            (como calendário de lançamentos), então interpretações de causa são evitadas.
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <footer>
+      <p>
+        Quer conferir a metodologia completa e os gráficos em detalhe?
+        Acesse o repositório no GitHub:
+        <a href="https://github.com/LeUchoa/popularidade-marvel-dc" target="_blank" rel="noopener">github.com/LeUchoa/popularidade-marvel-dc</a>
+      </p>
+    </footer>
   </div>
-  <div id="custom-tooltip"></div>
-
-  <script>
-    // Registro explícito dos componentes do plugin
-    const { ChoroplethController, Choropleth, GeoFeature } = ChartGeo;
-    Chart.register(ChoroplethController, Choropleth, GeoFeature);
-
-    // Dataset Marvel/DC (nomes com acento)
-    const dataEstados = {
-      "Acre": [30,70], "Alagoas": [33,67], "Amapá": [28,72], "Amazonas": [29,71],
-      "Bahia": [26,74], "Ceará": [30,70], "Distrito Federal": [26,74], "Espírito Santo": [29,71],
-      "Goiás": [28,72], "Maranhão": [27,73], "Mato Grosso": [31,69], "Mato Grosso do Sul": [30,70],
-      "Minas Gerais": [24,76], "Pará": [26,74], "Paraíba": [31,69], "Paraná": [27,73],
-      "Pernambuco": [26,74], "Piauí": [33,67], "Rio de Janeiro": [27,73], "Rio Grande do Norte": [31,69],
-      "Rio Grande do Sul": [28,72], "Rondônia": [30,70], "Roraima": [26,74], "Santa Catarina": [26,74],
-      "São Paulo": [25,75], "Sergipe": [33,67], "Tocantins": [29,71]
-    };
-
-    // Normalização de nomes: remove acentos e baixa tudo
-    function normalize(str) {
-      return str
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .toLowerCase()
-        .replace(/\s+/g, ' ')
-        .trim();
-    }
-
-    // Índice de lookup normalizado para o dataset
-    const dataLookup = {};
-    Object.keys(dataEstados).forEach(nome => {
-      dataLookup[normalize(nome)] = { nome, dc: dataEstados[nome][0], marvel: dataEstados[nome][1] };
-    });
-
-    // Escala de cor: vermelho se Marvel > DC, azul se DC > Marvel
-    function getColor(dc, marvel) {
-      if (marvel > dc) {
-        const intensidade = (marvel - dc) / 100;
-        return `rgba(230,57,70,${0.3 + intensidade*0.7})`;
-      } else {
-        const intensidade = (dc - marvel) / 100;
-        return `rgba(0,123,255,${0.3 + intensidade*0.7})`;
-      }
-    }
-
-    // Carrega GeoJSON (estados brasileiros)
-    fetch("https://raw.githubusercontent.com/fititnt/gis-dataset-brasil/master/geojson/estados.json")
-      .then(res => res.json())
-      .then(geo => {
-        // Monta dataset com match de nomes via normalização
-        const features = geo.features.map(f => {
-          const nomeGeo = f.properties.NOME;            // nomes sem acento no arquivo
-          const key = normalize(nomeGeo);               // normaliza
-          const found = dataLookup[key];                // procura no dataset normalizado
-          const nomeFinal = found ? found.nome : nomeGeo;
-          const dc = found ? found.dc : 0;
-          const marvel = found ? found.marvel : 0;
-          return {
-            feature: f,
-            value: marvel - dc,
-            dc, marvel, nome: nomeFinal
-          };
-        });
-
-        const ctx = document.getElementById("mapChart").getContext("2d");
-        new Chart(ctx, {
-          type: "choropleth",
-          data: {
-            labels: features.map(f => f.nome),
-            datasets: [{
-              label: "Distribuição por Estados",
-              outline: { type: 'FeatureCollection', features: geo.features },
-              data: features.map(f => ({
-                feature: f.feature,
-                value: f.value,
-                dc: f.dc,
-                marvel: f.marvel,
-                nome: f.nome
-              })),
-              backgroundColor: c => {
-                const d = c.raw;
-                return getColor(d.dc, d.marvel);
-              },
-              borderColor: 'rgba(0,0,0,0.15)',
-              borderWidth: 0.5
-            }]
-          },
-          options: {
-            plugins: {
-              legend: { display: false },
-              tooltip: {
-                enabled: false, // tooltip externo
-                external: function(context) {
-                  const tooltipEl = document.getElementById('custom-tooltip');
-                  const tooltipModel = context.tooltip;
-                  if (tooltipModel.opacity === 0) {
-                    tooltipEl.style.opacity = 0;
-                    return;
-                  }
-                  const d = tooltipModel.dataPoints[0].raw;
-                  const state = d.nome;
-                  const dc = d.dc;
-                  const marvel = d.marvel;
-
-                  tooltipEl.innerHTML = `
-                    <div style="font-weight:600;margin-bottom:6px;">${state}</div>
-                    <div style="display:flex;align-items:center;gap:12px;">
-                      <div>
-                        <div style="display:flex;justify-content:space-between;gap:12px;">
-                          <span style="color:#007bff;">DC Comics</span>
-                          <span style="color:#007bff;">${dc}%</span>
-                        </div>
-                        <div style="display:flex;justify-content:space-between;gap:12px;">
-                          <span style="color:#e63946;">Marvel Comics</span>
-                          <span style="color:#e63946;">${marvel}%</span>
-                        </div>
-                      </div>
-                      <canvas id="miniChart" width="64" height="64"></canvas>
-                    </div>
-                    <div style="margin-top:8px;font-size:12px;color:#555;">
-                      Porcentagens calculadas das pesquisas para todos os 2 termos em ${state}
-                    </div>
-                  `;
-
-                  // Posiciona perto do cursor
-                  const rect = context.chart.canvas.getBoundingClientRect();
-                  tooltipEl.style.left = rect.left + context.chart._lastEvent.x + 15 + "px";
-                  tooltipEl.style.top = rect.top + context.chart._lastEvent.y + 15 + "px";
-                  tooltipEl.style.opacity = 1;
-
-                  const miniCtx = document.getElementById("miniChart").getContext("2d");
-                  if (miniCtx._chartInstance) miniCtx._chartInstance.destroy();
-                  miniCtx._chartInstance = new Chart(miniCtx, {
-                    type: "doughnut",
-                    data: {
-                      labels: ["DC","Marvel"],
-                      datasets: [{
-                        data: [dc, marvel],
-                        backgroundColor: ["#007bff","#e63946"]
-                      }]
-                    },
-                    options: {
-                      plugins:{legend:{display:false}},
-                      cutout:"60%",
-                      responsive:false
-                    }
-                  });
-                }
-              }
-            },
-            scales: {
-              projection: {
-                // Projeção adequada para mapas no plugin
-                axis: 'xy',
-                projection: 'equalEarth'
-              }
-            }
-          }
-        });
-      });
-  </script>
 </body>
 </html>
