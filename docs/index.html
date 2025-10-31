@@ -9,7 +9,13 @@
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/LeUchoa/popularidade-marvel-dc/refs/heads/main/docs/favicon.ico"/>
 
-  <!-- Open Graph (WhatsApp, Facebook, LinkedIn etc.) -->
+  <!-- Apple Touch Icon (iOS) -->
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/LeUchoa/popularidade-marvel-dc/refs/heads/main/docs/thumbnail.jpg"/>
+
+  <!-- Theme color -->
+  <meta name="theme-color" content="#c62828"/>
+
+  <!-- Open Graph -->
   <meta property="og:title" content="Marvel x DC no Brasil: quem domina o interesse em 2024?"/>
   <meta property="og:description" content="Levantamento de interesse em 2024 mostra a Marvel na frente da DC no Brasil, com médias e variações mensais sem inversões."/>
   <meta property="og:image" content="https://raw.githubusercontent.com/LeUchoa/popularidade-marvel-dc/refs/heads/main/docs/thumbnail.jpg"/>
@@ -29,24 +35,13 @@
       --border:#ddd; --focus:#ffb84d; --max:860px;
       --shadow:0 4px 12px rgba(0,0,0,0.12);
     }
-
-    body{
-      margin:0;
-      font-family:Arial,Helvetica,sans-serif;
-      color:var(--text);
-      line-height:1.5;
-      background:var(--bg);
-    }
-
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);line-height:1.5;background:var(--bg);}
     .wrap{max-width:var(--max);margin:0 auto;padding:20px;}
-
     header{background:var(--card);border-radius:10px;padding:16px;box-shadow:var(--shadow);}
     h1{margin:0 0 10px;font-size:1.8rem;}
     .dek{margin:0 0 12px;font-size:1rem;}
-    .meta{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;font-size:0.9rem;color:var(--muted);border-top:1px dashed var(--border);padding-top:8px;}
-
+    .meta{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap;font-size:0.9rem;color:var(--muted);border-top:1px dashed var(--border);padding-top:8px;}
     .banner{margin:20px 0;background:#eee;border:1px dashed #ccc;border-radius:10px;min-height:220px;display:flex;align-items:center;justify-content:center;color:#666;box-shadow:var(--shadow);}
-
     main article{background:var(--card);border-radius:10px;padding:16px;box-shadow:var(--shadow);}
     article h2{margin-top:20px;font-size:1.2rem;}
     .chart-slot{margin:18px 0;border:1px dashed var(--border);border-radius:8px;background:#fafafa;padding:12px;color:#666;}
@@ -54,20 +49,17 @@
     .chart-half{flex:1 1 260px;min-height:200px;background:#f4f4f4;display:flex;align-items:center;justify-content:center;border-radius:8px;text-align:center;}
     .caption{font-size:0.85rem;color:#555;margin-top:6px;text-align:center;}
     .methodology{margin-top:24px;background:#fcfcfd;border:1px solid var(--border);border-radius:8px;padding:14px;font-size:0.95rem;}
-
     table{width:100%;border-collapse:collapse;margin-top:10px;font-size:0.9rem;}
     th,td{border:1px solid var(--border);padding:6px;text-align:left;}
     th{background:#f2f2f2;}
-
     .share{display:flex;gap:10px;align-items:center;}
     .share a{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:6px;}
     .share img,.share svg{width:100%;height:100%;}
     .share a:focus{outline:3px solid var(--focus);outline-offset:2px}
-
+    .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#333;color:#fff;padding:8px 12px;border-radius:8px;font-size:0.9rem;opacity:0;pointer-events:none;transition:opacity .2s;}
+    .toast.show{opacity:1;}
     footer{margin-top:30px;font-size:0.9rem;color:#555;text-align:center;}
-
     a:focus, button:focus{outline:3px solid var(--focus);outline-offset:2px}
-
     @media(max-width:600px){
       h1{font-size:1.4rem}
       .banner{min-height:160px}
@@ -75,15 +67,32 @@
       .share a{width:26px;height:26px}
     }
     @media(prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
+
+    /* Contato: botão com degradê vermelho → azul (Marvel → DC) */
+    .contact {background:var(--card);border-radius:10px;padding:16px;box-shadow:var(--shadow);margin-top:20px;}
+    .contact a.button{
+      display:inline-block;
+      padding:12px 20px;
+      background: linear-gradient(90deg, #c62828 0%, #1565c0 100%);
+      color:#fff;
+      text-decoration:none;
+      border-radius:6px;
+      font-weight:bold;
+      box-shadow:0 2px 6px rgba(0,0,0,0.2);
+      transition:opacity .2s;
+    }
+    .contact a.button:hover{opacity:0.9;}
   </style>
 </head>
 <body>
   <div class="wrap">
 
-    <div class="banner" role="img" aria-label="Imagem de destaque da matéria (placeholder)">
-      Banner de destaque — inserir imagem aqui
+   <div class="banner">
+  	<img src="https://github.com/LeUchoa/popularidade-marvel-dc/blob/b0fefb8a58c8c460e60c8f1235fbe2700d43e372/docs/thumbnail.jpg?raw=true"
+       alt="Imagem de destaque do projeto Marvel x DC no Brasil"
+       style="width:100%;height:300px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.12); "/>
     </div>
-
+    
     <header role="banner" aria-labelledby="title">
       <h1 id="title">Marvel x DC no Brasil: quem domina o interesse em 2024?</h1>
       <p class="dek">
@@ -93,17 +102,24 @@
       <div class="meta">
         <div>Por <strong>Leandro "CrashNeo" Uchôa</strong> • <time datetime="2025-11">novembro de 2025</time></div>
         <nav class="share" aria-label="Compartilhar este artigo">
-          <a href="https://twitter.com/intent/tweet?url=https://leuchoa.github.io/popularidade-marvel-dc/&text=Marvel%20x%20DC%20no%20Brasil%3A%20quem%20domina%20o%20interesse%20em%202024%3F" aria-label="Compartilhar no X">
+          <!-- X/Twitter -->
+          <a href="https://twitter.com/intent/tweet?url=https://leuchoa.github.io/popularidade-marvel-dc/&text=Marvel%20x%20DC%20no%20Brasil"
+             class="share-link" data-popup="popup-x" aria-label="Compartilhar no X">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X"/>
           </a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://leuchoa.github.io/popularidade-marvel-dc/" aria-label="Compartilhar no Facebook">
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://leuchoa.github.io/popularidade-marvel-dc/"
+             class="share-link" data-popup="popup-fb" aria-label="Compartilhar no Facebook">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook"/>
           </a>
-          <a href="https://wa.me/?text=Marvel%20x%20DC%20no%20Brasil%3A%20quem%20domina%20o%20interesse%20em%202024%3F%20https%3A%2F%2Fleuchoa.github.io%2Fpopularidade-marvel-dc%2F" aria-label="Compartilhar no WhatsApp">
+          <!-- WhatsApp -->
+          <a href="https://wa.me/?text=Marvel%20x%20DC%20no%20Brasil%20https%3A%2F%2Fleuchoa.github.io%2Fpopularidade-marvel-dc%2F"
+             class="share-link" data-popup="popup-wa" aria-label="Compartilhar no WhatsApp">
             <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp"/>
           </a>
-          <a href="https://leuchoa.github.io/popularidade-marvel-dc/" aria-label="Abrir link">
-            <svg viewBox="0 0 24 24" role="img" aria-label="Link" xmlns="http://www.w3.org/2000/svg">
+          <!-- Copiar link (corrente) -->
+          <a href="#" class="copy-link" aria-label="Copiar link">
+            <svg viewBox="0 0 24 24" role="img" aria-label="Copiar link" xmlns="http://www.w3.org/2000/svg">
               <path fill="#4a4a4a" d="M3.9 12a4.1 4.1 0 0 1 1.2-2.9l3.2-3.2a4.1 4.1 0 0 1 5.8 0 1 1 0 1 1-1.4 1.4 2.1 2.1 0 0 0-3 0L6.6 10.6a2.1 2.1 0 0 0 0 3 1 1 0 1 1-1.4 1.4A4.1 4.1 0 0 1 3.9 12Zm16.2 0a4.1 4.1 0 0 1-1.2 2.9l-3.2 3.2a4.1 4.1 0 0 1-5.8 0 1 1 0 1 1 1.4-1.4 2.1 2.1 0 0 0 3 0l3.2-3.2a2.1 2.1 0 0 0 0-3 1 1 0 1 1 1.4-1.4 4.1 4.1 0 0 1 1.2 2.9Zm-9.6 2.4 4.8-4.8a1 1 0 0 1 1.4 1.4l-4.8 4.8a1 1 0 1 1-1.4-1.4Z"/>
             </svg>
           </a>
@@ -119,7 +135,6 @@
           vantagem ampla e consistente ao longo do ano, com média de <strong>46.1</strong> contra <strong>19.4</strong> da DC (índice de atenção, não porcentagem).
         </p>
 
-        <!-- Gráfico 1: 2x1 -->
         <section class="chart-slot" role="group" aria-labelledby="slot-2x1">
           <h3 id="slot-2x1">Gráfico consolidado + evolução mensal</h3>
           <div class="charts-row">
@@ -135,7 +150,6 @@
           base fiel, mas não há casos em que ela ultrapasse a rival.
         </p>
 
-        <!-- Gráfico 2: por estado + tabela -->
         <section class="chart-slot" role="group" aria-labelledby="slot-estados">
           <h3 id="slot-estados">Distribuição por estados</h3>
           <div style="width:100%;min-height:260px;background:#f4f4f4;display:flex;align-items:center;justify-content:center;border-radius:8px;text-align:center;" aria-label="Gráfico por estados">
@@ -183,7 +197,6 @@
           Cada estado é um quadro dessa história, variando só na intensidade. No placar, a paleta é Marvel de ponta a ponta.
         </p>
 
-        <!-- Gráfico 3: mapa -->
         <section class="chart-slot" role="img" aria-label="Mapa do Brasil — predominância de interesse">
           [Placeholder do mapa do Brasil]
           <div class="caption">Mapa em tons de vermelho: Marvel domina em todos os estados.</div>
@@ -200,6 +213,17 @@
       </article>
     </main>
 
+    <!-- Contato (Versão 2: botão que abre em nova aba) -->
+    <section class="contact" aria-labelledby="contato">
+      <h2 id="contato">Entre em contato</h2>
+      <p>Quer mandar uma mensagem, sugestão ou dúvida? Clique no botão abaixo:</p>
+      <a class="button"
+         href="https://docs.google.com/forms/d/e/1FAIpQLSdpCxoH638ngj0Lzr5EVsX0yLv8K2yX-ZfBFh7tDS9hxxKJMQ/viewform?usp=header"
+         target="_blank" rel="noopener">
+        Fale comigo
+      </a>
+    </section>
+
     <footer>
       <p>
         Quer conferir a metodologia completa e os gráficos em detalhe?
@@ -208,5 +232,52 @@
       </p>
     </footer>
   </div>
+
+  <!-- JS: popups centralizados e copiar link -->
+  <script>
+    // Abre popups de compartilhamento centralizados
+    function openSharePopup(e) {
+      e.preventDefault();
+      const a = e.currentTarget;
+      const w = 600, h = 500;
+      const left = Math.max((screen.width - w) / 2, 0);
+      const top = Math.max((screen.height - h) / 2, 0);
+      window.open(a.href, a.dataset.popup || 'popup', `width=${w},height=${h},left=${left},top=${top},resizable=yes,toolbar=no,menubar=no,scrollbars=yes`);
+    }
+    document.querySelectorAll('.share-link').forEach(a => {
+      a.addEventListener('click', openSharePopup);
+    });
+
+    // Copiar link para área de transferência + toast
+    function showToast(msg) {
+      let toast = document.querySelector('.toast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.className = 'toast';
+        document.body.appendChild(toast);
+      }
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    document.querySelector('.copy-link')?.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const url = 'https://leuchoa.github.io/popularidade-marvel-dc/';
+      try {
+        await navigator.clipboard.writeText(url);
+        showToast('Link copiado!');
+      } catch {
+        // Fallback se clipboard API falhar
+        const ta = document.createElement('textarea');
+        ta.value = url;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        showToast('Link copiado!');
+      }
+    });
+  </script>
 </body>
 </html>
