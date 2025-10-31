@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Marvel x DC no Brasil: quem domina o interesse em 2024?</title>
-  <meta name="description" content="Levantamento de interesse em 2024 mostra a Marvel na frente da DC no Brasil, com médias e variações mensais sem inversões. Valores em índice (estilo Trends)."/>
+  <title>Marvel x DC no Brasil 2024 — Popularidade e Interesse</title>
+  <meta name="description" content="Análise da popularidade de Marvel e DC no Brasil em 2024: gráficos, mapas e comparativos de interesse. Marvel lidera em todos os estados.">
+  <meta name="keywords" content="Marvel, DC, Brasil, 2024, popularidade, interesse, fandom, quadrinhos, super-heróis"/>
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/LeUchoa/popularidade-marvel-dc/refs/heads/main/docs/favicon.ico"/>
 
-  <!-- Apple Touch Icon (iOS) -->
+  <!-- Apple Touch Icon -->
   <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/LeUchoa/popularidade-marvel-dc/refs/heads/main/docs/thumbnail.jpg"/>
 
   <!-- Theme color -->
   <meta name="theme-color" content="#c62828"/>
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Marvel x DC no Brasil: quem domina o interesse em 2024?"/>
-  <meta property="og:description" content="Levantamento de interesse em 2024 mostra a Marvel na frente da DC no Brasil, com médias e variações mensais sem inversões."/>
+  <meta property="og:title" content="Marvel x DC no Brasil 2024 — Popularidade e Interesse"/>
+  <meta property="og:description" content="Marvel lidera o interesse em 2024 em todos os estados brasileiros. Veja gráficos, mapas e comparativos."/>
   <meta property="og:image" content="https://raw.githubusercontent.com/LeUchoa/popularidade-marvel-dc/refs/heads/main/docs/thumbnail.jpg"/>
   <meta property="og:url" content="https://leuchoa.github.io/popularidade-marvel-dc/"/>
   <meta property="og:type" content="website"/>
@@ -25,23 +26,29 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Marvel x DC no Brasil: quem domina o interesse em 2024?"/>
-  <meta name="twitter:description" content="Levantamento de interesse em 2024 mostra a Marvel na frente da DC no Brasil, com médias e variações mensais sem inversões."/>
+  <meta name="twitter:title" content="Marvel x DC no Brasil 2024 — Popularidade e Interesse"/>
+  <meta name="twitter:description" content="Marvel lidera o interesse em 2024 em todos os estados brasileiros. Veja gráficos, mapas e comparativos."/>
   <meta name="twitter:image" content="https://raw.githubusercontent.com/LeUchoa/popularidade-marvel-dc/refs/heads/main/docs/thumbnail.jpg"/>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg:#f9f9f9; --card:#fff; --text:#111; --muted:#555;
       --border:#ddd; --focus:#ffb84d; --max:860px;
       --shadow:0 4px 12px rgba(0,0,0,0.12);
+      --accent:#c62828;
     }
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--text);line-height:1.5;background:var(--bg);}
+    body{margin:0;font-family:'Roboto',Arial,Helvetica,sans-serif;color:var(--text);line-height:1.5;background:var(--bg);}
+    h1,h2,h3{font-family:'Montserrat',sans-serif;}
     .wrap{max-width:var(--max);margin:0 auto;padding:20px;}
     header{background:var(--card);border-radius:10px;padding:16px;box-shadow:var(--shadow);}
     h1{margin:0 0 10px;font-size:1.8rem;}
     .dek{margin:0 0 12px;font-size:1rem;}
     .meta{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap;font-size:0.9rem;color:var(--muted);border-top:1px dashed var(--border);padding-top:8px;}
-    .banner{margin:20px 0;background:#eee;border:1px dashed #ccc;border-radius:10px;min-height:220px;display:flex;align-items:center;justify-content:center;color:#666;box-shadow:var(--shadow);}
+    .banner{margin:20px 0;}
+    .banner img{width:100%;height:300px;border-radius:10px;box-shadow:var(--shadow);} /* sem object-fit para ajustar mesmo que distorça */
     main article{background:var(--card);border-radius:10px;padding:16px;box-shadow:var(--shadow);}
     article h2{margin-top:20px;font-size:1.2rem;}
     .chart-slot{margin:18px 0;border:1px dashed var(--border);border-radius:8px;background:#fafafa;padding:12px;color:#666;}
@@ -60,15 +67,8 @@
     .toast.show{opacity:1;}
     footer{margin-top:30px;font-size:0.9rem;color:#555;text-align:center;}
     a:focus, button:focus{outline:3px solid var(--focus);outline-offset:2px}
-    @media(max-width:600px){
-      h1{font-size:1.4rem}
-      .banner{min-height:160px}
-      .charts-row{flex-direction:column}
-      .share a{width:26px;height:26px}
-    }
-    @media(prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
 
-    /* Contato: botão com degradê vermelho → azul (Marvel → DC) */
+    /* Contato */
     .contact {background:var(--card);border-radius:10px;padding:16px;box-shadow:var(--shadow);margin-top:20px;}
     .contact a.button{
       display:inline-block;
@@ -82,17 +82,62 @@
       transition:opacity .2s;
     }
     .contact a.button:hover{opacity:0.9;}
+
+    /* Botão voltar ao topo */
+    #backToTop{
+      position:fixed;bottom:20px;right:20px;
+      background:var(--accent);color:#fff;border:none;
+      border-radius:50%;width:40px;height:40px;
+      display:flex;align-items:center;justify-content:center;
+      font-size:20px;cursor:pointer;box-shadow:var(--shadow);
+      display:none;
+    }
+
+    /* Dark mode base */
+    body.dark{--bg:#121212;--card:#1e1e1e;--text:#eee;--muted:#aaa;--border:#333;}
+    .dark footer{color:#aaa;}
+    .dark .contact a.button{box-shadow:none;}
+    /* Inverter ícones no dark mode */
+    body.dark .share img,
+    body.dark .share svg { filter: invert(1); }
+    /* Ajuste metodologia no dark mode */
+    body.dark .methodology {
+      background:#1a1a1a;
+      border-color:#444;
+      color:#eee;
+    }
+    body.dark .methodology h3 { color:#fff; }
+
+    .dark-toggle{
+      position:fixed;top:20px;right:20px;
+      background:#444;color:#fff;border:none;
+      padding:6px 10px;border-radius:6px;cursor:pointer;
+      font-size:0.9rem;
+      box-shadow:var(--shadow);
+    }
+
+    @media(max-width:600px){
+      h1{font-size:1.4rem}
+      .banner img{height:200px}
+      .charts-row{flex-direction:column}
+      .share a{width:26px;height:26px}
+    }
+    @media(prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
   </style>
 </head>
 <body>
   <div class="wrap">
 
-   <div class="banner">
-  	<img src="https://github.com/LeUchoa/popularidade-marvel-dc/blob/b0fefb8a58c8c460e60c8f1235fbe2700d43e372/docs/thumbnail.jpg?raw=true"
-       alt="Imagem de destaque do projeto Marvel x DC no Brasil"
-       style="width:100%;height:300px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.12); "/>
+    <!-- Banner -->
+    <div class="banner">
+      <img src="https://github.com/LeUchoa/popularidade-marvel-dc/blob/b0fefb8a58c8c460e60c8f1235fbe2700d43e372/docs/thumbnail.jpg?raw=true"
+           alt="Imagem de destaque do projeto Marvel x DC no Brasil"/>
     </div>
-    
+
+    <!-- Botão Dark Mode -->
+    <button class="dark-toggle" onclick="document.body.classList.toggle('dark')">🌙/☀️</button>
+
+    <!-- Header -->
     <header role="banner" aria-labelledby="title">
       <h1 id="title">Marvel x DC no Brasil: quem domina o interesse em 2024?</h1>
       <p class="dek">
@@ -127,6 +172,7 @@
       </div>
     </header>
 
+    <!-- Main -->
     <main>
       <article role="article" aria-labelledby="intro">
         <h2 id="intro">Panorama geral</h2>
@@ -213,7 +259,7 @@
       </article>
     </main>
 
-    <!-- Contato (Versão 2: botão que abre em nova aba) -->
+    <!-- Contato -->
     <section class="contact" aria-labelledby="contato">
       <h2 id="contato">Entre em contato</h2>
       <p>Quer mandar uma mensagem, sugestão ou dúvida? Clique no botão abaixo:</p>
@@ -224,6 +270,7 @@
       </a>
     </section>
 
+    <!-- Footer -->
     <footer>
       <p>
         Quer conferir a metodologia completa e os gráficos em detalhe?
@@ -233,7 +280,10 @@
     </footer>
   </div>
 
-  <!-- JS: popups centralizados e copiar link -->
+  <!-- Botão voltar ao topo -->
+  <button id="backToTop" aria-label="Voltar ao topo">↑</button>
+
+  <!-- JS -->
   <script>
     // Abre popups de compartilhamento centralizados
     function openSharePopup(e) {
@@ -248,7 +298,7 @@
       a.addEventListener('click', openSharePopup);
     });
 
-    // Copiar link para área de transferência + toast
+    // Copiar link + toast
     function showToast(msg) {
       let toast = document.querySelector('.toast');
       if (!toast) {
@@ -268,7 +318,6 @@
         await navigator.clipboard.writeText(url);
         showToast('Link copiado!');
       } catch {
-        // Fallback se clipboard API falhar
         const ta = document.createElement('textarea');
         ta.value = url;
         document.body.appendChild(ta);
@@ -277,6 +326,15 @@
         ta.remove();
         showToast('Link copiado!');
       }
+    });
+
+    // Voltar ao topo
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 400 ? 'flex' : 'none';
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
 </body>
