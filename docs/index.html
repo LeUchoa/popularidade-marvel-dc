@@ -33,6 +33,12 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto&display=swap" rel="stylesheet">
 
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Trends loader (uma vez só) -->
+  <script src="https://ssl.gstatic.com/trends_nrtr/4267_RC01/embed_loader.js"></script>
+
   <style>
     :root{
       --bg:#f9f9f9; --card:#fff; --text:#111; --muted:#555;
@@ -120,16 +126,37 @@
       .trends-mobile { display:block; }
     }
 
-    @media(max-width:600px){
-      h1{font-size:1.4rem}
-      .banner img{height:200px}
-      .share a{width:26px;height:26px}
+    /* Chart customizado */
+    .chart-box {
+      background: var(--card);
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      width: 100%;
+      overflow-x: auto;
     }
-    @media(prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
+    #custom-tooltip {
+      position: absolute;
+      background: var(--card);
+      border: 1px solid var(--border);
+            border-radius: 6px;
+      padding: 10px;
+      pointer-events: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      opacity: 0;
+      transition: opacity 0.15s;
+      z-index: 1000;
+      font-size: 0.85rem;
+    }
+    body.dark #custom-tooltip {
+      background: #1e1e1e;
+      border-color: #444;
+      color: #eee;
+    }
   </style>
 </head>
 <body>
-    <div class="wrap">
+  <div class="wrap">
 
     <!-- Banner -->
     <div class="banner">
@@ -180,9 +207,12 @@
       <article role="article" aria-labelledby="intro">
         <h2 id="intro">Panorama geral</h2>
         <p>
-          A eterna disputa entre Marvel e DC também se reflete no interesse dos brasileiros em 2024. E os números são claros: a Marvel mantém
-          vantagem ampla e consistente ao longo do ano, com média de <strong>46.1</strong> contra <strong>19.4</strong> da DC (índice de atenção, não porcentagem).
-        </p>
+  A eterna disputa entre Marvel e DC também se reflete no interesse dos brasileiros em 2024. 
+  Os números são claros: a Marvel mantém vantagem ampla e consistente ao longo do ano, 
+  com média de <strong>46.1</strong> contra <strong>19.4</strong> da DC. 
+  Esses valores representam índices de atenção (semelhantes ao Google Trends), e não porcentagens absolutas — 
+  e em nenhum momento a DC assume a liderança.
+</p>
 
         <!-- Gráfico Trends -->
         <section class="chart-slot" role="group" aria-labelledby="slot-2x1">
@@ -190,7 +220,6 @@
 
           <!-- Versão desktop -->
           <div class="trends-desktop">
-            <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/4267_RC01/embed_loader.js"></script>
             <script type="text/javascript">
               trends.embed.renderExploreWidget("TIMESERIES",
                 {"comparisonItem":[
@@ -204,7 +233,6 @@
 
           <!-- Versão mobile -->
           <div class="trends-mobile">
-            <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/4267_RC01/embed_loader.js"></script>
             <script type="text/javascript">
               trends.embed.renderExploreWidget("TIMESERIES",
                 {"comparisonItem":[
@@ -216,61 +244,24 @@
             </script>
           </div>
 
-                    <div class="caption">Comparativo de interesse ao longo de 2024 — Marvel x DC no Brasil.</div>
+                                      <div class="caption">Comparativo de interesse ao longo de 2024 — Marvel x DC no Brasil.</div>
         </section>
 
         <h2>O mapa do fandom</h2>
         <p>
-          Quando olhamos estado por estado, o cenário é consistente: a Marvel aparece na frente em todos os estados analisados. A DC mantém uma
-          base fiel, mas não há casos em que ela ultrapasse a rival.
-        </p>
-
-        <section class="chart-slot" role="group" aria-labelledby="slot-estados">
-          <h3 id="slot-estados">Distribuição por estados</h3>
-          <div style="width:100%;min-height:260px;background:#f4f4f4;display:flex;align-items:center;justify-content:center;border-radius:8px;text-align:center;" aria-label="Gráfico por estados">
-            [Gráfico por estados]
-          </div>
-          <div class="caption">Marvel lidera em todos os estados; tabela abaixo detalha os índices.</div>
-          <table aria-describedby="tabela-estados-desc">
-            <caption id="tabela-estados-desc">Índices por estado (formato comparativo, estilo Trends)</caption>
-            <thead><tr><th>Estado</th><th>DC</th><th>Marvel</th></tr></thead>
-            <tbody>
-              <tr><td>Acre</td><td>30</td><td>70</td></tr>
-              <tr><td>Alagoas</td><td>33</td><td>67</td></tr>
-              <tr><td>Amapá</td><td>28</td><td>72</td></tr>
-              <tr><td>Amazonas</td><td>29</td><td>71</td></tr>
-              <tr><td>Bahia</td><td>26</td><td>74</td></tr>
-              <tr><td>Ceará</td><td>30</td><td>70</td></tr>
-              <tr><td>Distrito Federal</td><td>26</td><td>74</td></tr>
-              <tr><td>Espírito Santo</td><td>29</td><td>71</td></tr>
-              <tr><td>Goiás</td><td>28</td><td>72</td></tr>
-              <tr><td>Maranhão</td><td>27</td><td>73</td></tr>
-              <tr><td>Mato Grosso</td><td>31</td><td>69</td></tr>
-              <tr><td>Mato Grosso do Sul</td><td>30</td><td>70</td></tr>
-              <tr><td>Minas Gerais</td><td>24</td><td>76</td></tr>
-              <tr><td>Pará</td><td>26</td><td>74</td></tr>
-              <tr><td>Paraíba</td><td>31</td><td>69</td></tr>
-              <tr><td>Paraná</td><td>27</td><td>73</td></tr>
-              <tr><td>Pernambuco</td><td>26</td><td>74</td></tr>
-              <tr><td>Piauí</td><td>33</td><td>67</td></tr>
-              <tr><td>Rio de Janeiro</td><td>27</td><td>73</td></tr>
-              <tr><td>Rio Grande do Norte</td><td>31</td><td>69</td></tr>
-              <tr><td>Rio Grande do Sul</td><td>28</td><td>72</td></tr>
-              <tr><td>Rondônia</td><td>30</td><td>70</td></tr>
-              <tr><td>Roraima</td><td>26</td><td>74</td></tr>
-              <tr><td>Santa Catarina</td><td>26</td><td>74</td></tr>
-              <tr><td>São Paulo</td><td>25</td><td>75</td></tr>
-              <tr><td>Sergipe</td><td>33</td><td>67</td></tr>
-              <tr><td>Tocantins</td><td>29</td><td>71</td></tr>
-            </tbody>
-          </table>
-        </section>
+  O gráfico interativo abaixo permite explorar o interesse por região. 
+  Ao selecionar a visualização de mapa, fica evidente que a Marvel aparece na frente em todos os estados analisados. 
+  No canto inferior direito do gráfico, há um botão que permite alternar entre diferentes modos de visualização 
+  (linha, mapa, etc.). Experimente navegar por essas opções para observar os dados sob outras perspectivas. 
+  Para complementar, a tabela mais abaixo resume os valores médios de interesse por estado, facilitando a leitura direta.
+</p>
 
         <h2>O Brasil em cores</h2>
         <p>
-          Pense o país como uma página de HQ gigante: um Brasil inteiro em tons de vermelho — do mais claro ao mais vibrante.
-          Cada estado é um quadro dessa história, variando só na intensidade. No placar, a paleta é Marvel de ponta a ponta.
-        </p>
+  Ao trocar para a visualização de mapa, o Brasil surge em tons de vermelho — do mais claro ao mais vibrante. 
+  Cada estado se torna um quadro dessa narrativa, variando apenas na intensidade. 
+  O resultado é inequívoco: em todos os estados, a paleta é Marvel de ponta a ponta.
+</p>
 
         <section class="chart-slot" role="img" aria-label="Mapa do Brasil — predominância de interesse">
           <!-- Versão desktop -->
@@ -302,6 +293,55 @@
           <div class="caption">Mapa interativo do Google Trends: detalhamento por estados do Brasil em 2024.</div>
         </section>
 
+        <h2>Divisão por estados</h2>
+        <p>
+  A tabela a seguir apresenta os índices médios de interesse em 2024, estado por estado. 
+  Ela confirma de forma objetiva o que já se percebe no gráfico: a Marvel lidera com folga em todo o território nacional.
+</p>
+
+        <section class="chart-slot" role="table" aria-labelledby="tabela-estados">
+          <h3 id="tabela-estados">Tabela de interesse por estado</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Estado</th>
+                <th>Marvel</th>
+                <th>DC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Acre</td><td>70</td><td>30</td></tr>
+              <tr><td>Alagoas</td><td>67</td><td>33</td></tr>
+              <tr><td>Amapá</td><td>72</td><td>28</td></tr>
+              <tr><td>Amazonas</td><td>71</td><td>29</td></tr>
+              <tr><td>Bahia</td><td>74</td><td>26</td></tr>
+              <tr><td>Ceará</td><td>70</td><td>30</td></tr>
+              <tr><td>Distrito Federal</td><td>74</td><td>26</td></tr>
+              <tr><td>Espírito Santo</td><td>71</td><td>29</td></tr>
+              <tr><td>Goiás</td><td>72</td><td>28</td></tr>
+              <tr><td>Maranhão</td><td>73</td><td>27</td></tr>
+              <tr><td>Mato Grosso</td><td>69</td><td>31</td></tr>
+              <tr><td>Mato Grosso do Sul</td><td>70</td><td>30</td></tr>
+              <tr><td>Minas Gerais</td><td>76</td><td>24</td></tr>
+              <tr><td>Pará</td><td>74</td><td>26</td></tr>
+              <tr><td>Paraíba</td><td>69</td><td>31</td></tr>
+              <tr><td>Paraná</td><td>73</td><td>27</td></tr>
+              <tr><td>Pernambuco</td><td>74</td><td>26</td></tr>
+              <tr><td>Piauí</td><td>67</td><td>33</td></tr>
+              <tr><td>Rio de Janeiro</td><td>73</td><td>27</td></tr>
+              <tr><td>Rio Grande do Norte</td><td>69</td><td>31</td></tr>
+              <tr><td>Rio Grande do Sul</td><td>72</td><td>28</td></tr>
+              <tr><td>Rondônia</td><td>70</td><td>30</td></tr>
+              <tr><td>Roraima</td><td>74</td><td>26</td></tr>
+              <tr><td>Santa Catarina</td><td>74</td><td>26</td></tr>
+              <tr><td>São Paulo</td><td>75</td><td>25</td></tr>
+              <tr><td>Sergipe</td><td>67</td><td>33</td></tr>
+              <tr><td>Tocantins</td><td>71</td><td>29</td></tr>
+            </tbody>
+          </table>
+          <div class="caption">Tabela de interesse médio por estado em 2024.</div>
+        </section>
+
         <section class="methodology" aria-labelledby="metodo">
           <h3 id="metodo">Metodologia</h3>
           <p>
@@ -309,7 +349,7 @@
             As médias (Marvel 46.1; DC 19.4) representam o comportamento geral do período. Não foram aplicadas correlações externas
             (como calendário de lançamentos), então interpretações de causa são evitadas.
           </p>
-                </section>
+        </section>
       </article>
     </main>
 
@@ -389,6 +429,102 @@
     });
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Chart.js gráfico por estados
+    const states = [
+      "Acre","Alagoas","Amapá","Amazonas","Bahia","Ceará","Distrito Federal","Espírito Santo",
+      "Goiás","Maranhão","Mato Grosso","Mato Grosso do Sul","Minas Gerais","Pará","Paraíba",
+      "Paraná","Pernambuco","Piauí","Rio de Janeiro","Rio Grande do Norte","Rio Grande do Sul",
+      "Rondônia","Roraima","Santa Catarina","São Paulo","Sergipe","Tocantins"
+    ];
+
+    const dcData = [30,33,28,29,26,30,26,29,28,27,31,30,24,26,31,27,26,33,27,31,28,30,26,26,25,33,29];
+    const marvelData = [70,67,72,71,74,70,74,71,72,73,69,70,76,74,69,73,74,67,73,69,72,70,74,74,75,67,71];
+
+    const ctx = document.getElementById('regionChart').getContext('2d');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: states,
+        datasets: [
+          {
+            label: 'DC Comics',
+            data: dcData,
+            backgroundColor: '#1565c0',
+            stack: 'Stack 0'
+          },
+          {
+            label: 'Marvel Comics',
+            data: marvelData,
+            backgroundColor: '#c62828',
+            stack: 'Stack 0'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: { display: false },
+          tooltip: {
+            enabled: false,
+            external: function(context) {
+              const tooltipEl = document.getElementById('custom-tooltip');
+              const tooltipModel = context.tooltip;
+
+              if (tooltipModel.opacity === 0) {
+                tooltipEl.style.opacity = 0;
+                return;
+              }
+
+              const state = tooltipModel.title[0];
+              const idx = tooltipModel.dataPoints[0].dataIndex;
+              const dc = dcData[idx];
+              const marvel = marvelData[idx];
+
+              tooltipEl.innerHTML = `
+                <div style="font-weight:600;margin-bottom:6px;">${state}</div>
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <div>
+                    <div style="display:flex;justify-content:space-between;gap:12px;">
+                      <span style="color:#1565c0;">DC Comics</span>
+                      <span style="color:#1565c0;">${dc}%</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;gap:12px;">
+                      <span style="color:#c62828;">Marvel Comics</span>
+                      <span style="color:#c62828;">${marvel}%</span>
+                    </div>
+                  </div>
+                </div>
+                <div style="margin-top:8px;font-size:12px;color:var(--muted);">
+                  Índices relativos de interesse em ${state}
+                </div>
+              `;
+
+              const mouseX = context.chart.canvas.getBoundingClientRect().left + context.chart._lastEvent.x;
+              const mouseY = context.chart.canvas.getBoundingClientRect().top + context.chart._lastEvent.y;
+              tooltipEl.style.left = mouseX + 15 + 'px';
+              tooltipEl.style.top = mouseY + 15 + 'px';
+              tooltipEl.style.opacity = 1;
+            }
+          }
+        },
+        scales: {
+          x: {
+            stacked: true,
+            beginAtZero: true,
+            max: 100,
+            title: { display: true, text: 'Percentual (%)' }
+          },
+          y: {
+            stacked: true,
+            ticks: { autoSkip: false }
+          }
+        }
+      }
     });
   </script>
 </body>
